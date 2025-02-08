@@ -21,6 +21,10 @@ public class UsuarioService {
     }
 
     public void inserir(UsuarioDTO usuario){
+        // Validação do campo email
+        if (usuario.getEmail() == null || usuario.getEmail().isEmpty()) {
+            throw new IllegalArgumentException("O campo email não pode ser nulo ou vazio");
+        }
         UsuarioEntity usuarioEntity = new UsuarioEntity(usuario);
         usuarioRepository.save(usuarioEntity);
     }
